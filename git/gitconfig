@@ -1,0 +1,20 @@
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[tag]
+	forceSignAnnotated = true
+[credential]
+	helper = osxkeychain
+[commit]
+	gpgSign = true
+	template = ~/.gitcommit
+[help]
+	autoCorrect = "prompt"
+[core]
+	excludesfile = ~/.gitignoreglobal
+	editor = "vim"
+[url "https://github.com/"]
+	insteadOf = gh:
+[url "https://gitlab.com/"]
+	insteadOf = gl:
