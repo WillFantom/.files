@@ -1,0 +1,105 @@
+# Setup Variables
+export ANTIDOTE_DIR=${HOME}/.antidote
+export ZSH_DOTFILES=${HOME}/.files/zsh
+export STARSHIP_DOTFILES=${HOME}/.files/starship
+export MACCHINA_DOTFILES=${HOME}/.files/macchina
+
+export WEATHER_CITY=Lancaster,UK
+export ANTIDOTE_VERSION=v1.1.0
+
+# Autoset Variables
+uname=$(uname | tr '[:upper:]' '[:lower:]')
+
+
+# ZSH Framework: Antidote
+# - install if required via git clone
+[[ -e "${ANTIDOTE_DIR}" ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git -b ${ANTIDOTE_VERSION} "${ANTIDOTE_DIR}"
+source "${ANTIDOTE_DIR}/antidote.zsh"
+autoload -Uz compinit
+compinit
+
+# ZSH Plugins: General
+if [[ -f "${ZSH_DOTFILES}/plugins.txt" ]]; then
+  if [[ ! "${ZSH_DOTFILES}/plugins.zsh" -nt "${ZSH_DOTFILES}/plugins.txt" ]]; then
+    antidote bundle <${ZSH_DOTFILES}/plugins.txt >${ZSH_DOTFILES}/plugins.zsh
+  fi
+  if [[ -f "${ZSH_DOTFILES}/plugins.zsh" ]]; then
+    source ${ZSH_DOTFILES}/plugins.zsh
+  fi
+fi
+
+# ZSH Aliases: General
+if [[ -f "${ZSH_DOTFILES}/aliases.sh" ]]; then
+  source ${ZSH_DOTFILES}/aliases.sh
+fi
+
+# ZSH Functions: General
+if [[ -f "${ZSH_DOTFILES}/functions.sh" ]]; then
+  source ${ZSH_DOTFILES}/functions.sh
+fi
+
+# ZSH Plugins: Specifc
+if [[ -f ${ZSH_DOTFILES}/plugins.${uname}.txt ]]; then
+  if [[ ! "${ZSH_DOTFILES}/plugins.${uname}.zsh" -nt "${ZSH_DOTFILES}/plugins.${uname}.txt" ]]; then
+    antidote bundle <${ZSH_DOTFILES}/plugins.${uname}.txt >${ZSH_DOTFILES}/plugins.${uname}.zsh
+  fi
+  if [[ -f "${ZSH_DOTFILES}/plugins.${uname}.zsh" ]]; then
+    source ${ZSH_DOTFILES}/plugins.${uname}.zsh
+  fi
+fi
+
+# ZSH Aliases: Specifc
+if [[ -f "${ZSH_DOTFILES}/aliases.${uname}.sh" ]]; then
+  source ${ZSH_DOTFILES}/aliases.${uname}.sh
+fi
+
+# ZSH Functions: Specifc
+if [[ -f "${ZSH_DOTFILES}/functions.${uname}.sh" ]]; then
+  source ${ZSH_DOTFILES}/functions.${uname}.sh
+fi
+
+# OS Specific
+if [[ -f "${ZSH_DOTFILES}/${uname}.sh" ]]; then
+  source ${ZSH_DOTFILES}/${uname}.sh
+fi
+
+# SSH & GPG
+if [ -x $(command -v assh) ]; then
+  alias ssh="assh wrapper ssh --"
+fi
+if [ -x $(command -v kr) ]; then
+  export GPG_TTY=$(tty)
+fi
+if [[ -e ~/.1password/agent.sock ]]; then
+  export SSH_AUTH_SOCK=~/.1password/agent.sock
+fi
+
+unset uname
+
+# Macchina
+theme=fantom-minimal
+# if [[ "${TERM_PROGRAM}" == "iTerm.app" ]]; then
+#   theme=fantom
+# fi
+if [ -x "$(command -v macchina)" ]; then
+  if [[ -f "${MACCHINA_DOTFILES}/macchina.toml" ]]; then
+    macchina --config ${MACCHINA_DOTFILES}/macchina.toml --theme ${theme}
+  else
+    macchina --theme ${theme}
+  fi
+fi
+unset theme
+
+# Zoxide CD Alternative
+if [ -x $(command -v zoxide) ]; then
+  eval "$(zoxide init zsh)"
+fi
+
+# Starship Prompt
+if [ -x $(command -v starship) ]; then
+  if [[ -f "${STARSHIP_DOTFILES}/config.toml" ]]; then
+    export STARSHIP_CONFIG=${STARSHIP_DOTFILES}/config.toml
+  fi
+  export STARSHIP_CACHE=${STARSHIP_DOTFILES}/cache
+  eval "$(starship init zsh)"
+fi

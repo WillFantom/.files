@@ -1,0 +1,28 @@
+# Beryllium
+
+spacing         = 1
+hide_ascii      = false
+key_color       = "#995555"
+separator       = ""
+
+[box]
+title           = " Will's Macbook Pro "
+border          = "rounded"
+visible         = true
+
+[box.inner_margin]
+x               = 1
+y               = 2
+
+[palette]
+glyph           = "○  "
+visible         = true
+
+[bar]
+glyph           = "○"
+hide_delimiters = true
+visible         = true
+
+
+[custom_ascii]
+color           = "#FF7001"
