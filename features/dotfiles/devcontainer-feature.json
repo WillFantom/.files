@@ -1,7 +1,7 @@
 {
   "name": "Fantom's Dotfiles",
   "id": "dotfiles",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Use the dotfiles from willfantom/.files. This installs all required packages via apt and cleans up apt.",
   "options": {
     "tz": {
@@ -21,6 +21,24 @@
         "en_US"
       ],
       "default": "en_GB"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "naumovs.color-highlight",
+        "spikespaz.vscode-smoothtype",
+        "alefragnani.Bookmarks",
+        "oderwat.indent-rainbow",
+        "mechatroner.rainbow-csv",
+        "yzhang.markdown-all-in-one",
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "gruntfuggly.todo-tree",
+        "mohsen1.prettify-json",
+        "stkb.rewrap",
+        "shardulm94.trailing-spaces"
+      ]
     }
   },
   "installsAfter": []
