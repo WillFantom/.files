@@ -1,7 +1,7 @@
 {
   "name": "Fantom's Dotfiles",
   "id": "dotfiles",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Use the dotfiles from willfantom/.files. This installs all required packages via apt and cleans up apt.",
   "options": {
     "tz": {
@@ -38,7 +38,13 @@
         "mohsen1.prettify-json",
         "stkb.rewrap",
         "shardulm94.trailing-spaces"
-      ]
+      ],
+      "settings": {
+        "files.eol": "\n",
+        "files.autoSave": "onFocusChange",
+        "editor.formatOnSave": true,
+        "rewrap.wrappingColumn": 80
+      }
     }
   },
   "installsAfter": []
