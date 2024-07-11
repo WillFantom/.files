@@ -12,13 +12,15 @@ else
 fi
 
 DOTFILES=()
-DOTFILES+=('.zshrc')          #main rc file for zsh
-DOTFILES+=('.zsh.d')          #directory containing files sourced by the zshrc
-DOTFILES+=('.starship')       #configuration directory for the starship prompt
-DOTFILES+=('.gitconfig')      #git configuration file
-DOTFILES+=('.gitconfig.d')    #directory of files used by the gitconfig
-DOTFILES+=('.mackup.cfg')     #main mackup configuration file
-DOTFILES+=('.mackup')         #directory of application specific mackup configurations
+DOTFILES+=('.zshrc')           #main rc file for zsh
+DOTFILES+=('.zsh.d')           #directory containing files sourced by the zshrc
+DOTFILES+=('.tmux.conf')       #main tmux configuration file
+DOTFILES+=('.tmux.conf.local') #supplemental file for tmux conf
+DOTFILES+=('.starship')        #configuration directory for the starship prompt
+DOTFILES+=('.gitconfig')       #git configuration file
+DOTFILES+=('.gitconfig.d')     #directory of files used by the gitconfig
+DOTFILES+=('.mackup.cfg')      #main mackup configuration file
+DOTFILES+=('.mackup')          #directory of application specific mackup configurations
 
 function print_ok() {
   printf "✅\t\033[0;32m%s\033[0m\n" "${1}"
