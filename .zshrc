@@ -111,3 +111,5 @@ unset -f source_plugins
 unset -f source_path
 unset -f source_rc
 unset -f main
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
