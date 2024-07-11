@@ -25,6 +25,11 @@ if assert_commad "starship" "-q"; then
   eval "$(starship init zsh)"
 fi
 
+## Atuin Shell History
+if assert_commad "atuin" "-q"; then
+  eval "$(atuin init zsh)"
+fi
+
 ## FastFetch (like neofetch)
 if assert_commad "fastfetch" "-q"; then 
   fastfetch --structure Title:Separator:OS:Host:Uptime:Shell:Terminal:CPUUsage:Memory:Battery:PowerAdapter:Player:Media:LocalIP
